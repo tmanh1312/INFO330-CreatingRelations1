@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS buildings (
-  id INTEGER SERIAL PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   name VARCHAR(80) NOT NULL,
   shortname VARCHAR(10) UNIQUE NOT NULL
 );
@@ -11,5 +11,7 @@ seating INTEGER,
 FOREIGN KEY (buildingid) REFERENCES buildings(id)
 );
 
+INSERT INTO buildings (name, shortname) VALUES ('Mary Gates Hall', 'MGH');
+
 INSERT INTO rooms (number, buildingid, seating) VALUES
-(400, (SELECT id FROM buildings WHERE shortname='GH'), 40);
+(400, (SELECT id FROM buildings WHERE name='Mary Gates Hall'), 40);
